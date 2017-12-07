@@ -1,0 +1,20 @@
+<header>
+  <nav class="navbar navbar-default" style="background-color:#033849;">
+    <div class="container">
+      <div class="pull-left">
+        <a class="navbar-brand" href="{{url_for('showLanding')}}" style="color:#FFF">
+          Catalog App
+        </a>
+      </div>
+      <div class="pull-right">
+        {% if 'email' not in session %}
+        <a href="{{url_for('showLogin')}}"><button type="button" class="btn btn-success" style="margin-top:8px;">Login</button></a>
+        {% else %}
+        <a href="{{url_for('disconnect')}}"><button type="button" class="btn btn-success" style="margin-top:8px;">Logout</button></a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+</header>
+
+        <span>{{session}}</span>

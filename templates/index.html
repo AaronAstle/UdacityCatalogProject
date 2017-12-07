@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="container" style="background-color:#FFF;">
+  <div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li><strong> {{ message }} </strong> </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </div>
+  <div class="row">
+    <div class="col-md-4" style="border-right:1px solid #F1F1F1">
+      {% if 'username' in session %}
+
+      {% endif %}
+      <h2>Categories</h2>
+      <ul class="list-unstyled">
+        {% for category in categories %}
+        <li>
+          <a href="{{url_for('showItems', category_id = category.id)}}">
+            {{ category.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+    <div class="col-md-8">
+      {% if 'username' in session %}
+      {% endif %}
+      <h2>Latest Items</h2>
+      <ul class="list-unstyled">
+        {% for item in latestItems %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

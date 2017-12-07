@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="container" style="background-color:#FFF;">
+  <div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li><strong> {{ message }} </strong> </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" style="border-right:1px solid #F1F1F1">
+      <h2>{{ category.name }}</h2>
+      {% if 'username' in session %}
+      <a href="{{url_for('deleteCategory', category_id = category.id)}}">Delete Category</a> | <a href="{{url_for('editCategory', category_id = category.id)}}">Edit Category</a>
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <h2>Items</h2>
+      <ul class="list-unstyled">
+        {% for item in items %}
+        <li><a href="{{url_for('itemDetails', category_id = item.category.id, item_id = item.id)}}">{{ item.name }}</a> ({{ item.category.name }})</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
